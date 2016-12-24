@@ -11,24 +11,20 @@ $(function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
-
+//check if all urls are defined
         it('URLs are all defined',function(){
-          allFeeds.forEach(function(item){
+            allFeeds.forEach(function(item){
             expect(item.url).toBeDefined();
             expect(item.url).not.toBe(0);
-          }
-          );
-
+            });
         });
+//check if names are present
         it('names are all defined',function(){
-          allFeeds.forEach(function(item){
+            allFeeds.forEach(function(item){
             expect(item.name).toBeDefined();
             expect(item.name).not.toBe(0);
-          }
-          );
-
+            });
         });
-
     });
 
     describe('Menu',function(){
@@ -40,41 +36,39 @@ $(function() {
 
         it('menu hidden by default',function(){
           //by default 'body' should have 'menu-hidden' class
-          expect($('body')).toHaveClass('menu-hidden');
-        });
+            expect($('body')).toHaveClass('menu-hidden');
+          });
         it('menu opens when clicked and closes when clicked again',function(){
           // When the icon is clicked the class will be toggled
-          $(".menu-icon-link").click();
-          expect($('body')).not.toHaveClass('menu-hidden');
-          $(".menu-icon-link").click();
-          expect($('body')).toHaveClass('menu-hidden');
+            $(".menu-icon-link").click();
+            expect($('body')).not.toHaveClass('menu-hidden');
+            $(".menu-icon-link").click();
+            expect($('body')).toHaveClass('menu-hidden');
         });
     });
 
-    describe('Initial Entries',function(){
+      describe('Initial Entries',function(){
         /* TODO: Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-         var feed;
+          var feed;
          beforeEach(function(done){
            //go through feed to find the elements "article"
-           loadFeed(0,function(){
-             feed= $('.feed').find('article').length;
-             done();
-           });
-
-         });
+              loadFeed(0,function(){
+              feed= $('.feed').find('article').length;
+              done();
+              });
+          });
          it('load feed function works',function(){
            //if the length is greather than 0 then atleast one article is present. And only article has the class ".entry"
            expect(feed).toBeGreaterThan(0);
-         })
+           });
       });
 
-
-        describe('New Feed Selection',function(){
+      describe('New Feed Selection',function(){
            /* TODO: Write a test that ensures when a new feed is loaded
             * by the loadFeed function that the content actually changes.
             * Remember, loadFeed() is asynchronous.
@@ -85,20 +79,19 @@ $(function() {
 
             beforeEach(function(done) {
               //get the first feed and store in feed1
-              loadFeed(0,function(){
-              feed1 = ($('.feed').text());
-              });
+                loadFeed(0,function(){
+                feed1 = ($('.feed').text());
+                });
               //get a different feed and store in feed2
-              loadFeed(1,function(){
-              feed2 = ($('.feed').text());
-              done();
-              });
+                loadFeed(1,function(){
+                feed2 = ($('.feed').text());
+                done();
+                });
             });
 
             it('feed content is updated', function() {
             //check if both the feeds are not equal
-              expect(feed1).not.toEqual(feed2);
+               expect(feed1).not.toEqual(feed2);
             });
-
-          });
+        });
 }());
