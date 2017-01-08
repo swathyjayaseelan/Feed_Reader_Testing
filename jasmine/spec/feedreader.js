@@ -11,16 +11,16 @@ $(function() {
         });
         //check if all urls are defined
         it('URLs are all defined', function() {
-            allFeeds.forEach(function(item) {
-                expect(item.url).toBeDefined();
-                expect(item.url.length).not.toBe(0);
+            allFeeds.forEach(function(feed) {
+                expect(feed.url).toBeDefined();
+                expect(feed.url.length).not.toBe(0);
             });
         });
         //check if names are present
         it('names are all defined', function() {
-            allFeeds.forEach(function(item) {
-                expect(item.name).toBeDefined();
-                expect(item.name).not.toBe(0);
+            allFeeds.forEach(function(feed) {
+                expect(feed.name).toBeDefined();
+                expect(feed.name.length).not.toBe(0);
             });
         });
     });
@@ -56,7 +56,7 @@ $(function() {
         beforeEach(function(done) {
             //go through feed to find the elements "article"
             loadFeed(0, function() {
-                feed = $('.feed').find('article').length;
+                feed = $('.feed').find('.entry').length;
                 done();
             });
         });
