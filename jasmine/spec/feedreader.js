@@ -13,7 +13,7 @@ $(function() {
         it('URLs are all defined', function() {
             allFeeds.forEach(function(item) {
                 expect(item.url).toBeDefined();
-                expect(item.url).not.toBe(0);
+                expect(item.url.length).not.toBe(0);
             });
         });
         //check if names are present
@@ -79,11 +79,11 @@ $(function() {
             //get the first feed and store in feed1
             loadFeed(0, function() {
                 feed1 = ($('.feed').text());
-            });
-            //get a different feed and store in feed2
-            loadFeed(1, function() {
-                feed2 = ($('.feed').text());
-                done();
+                //get a different feed and store in feed2
+                loadFeed(1, function() {
+                    feed2 = ($('.feed').text());
+                    done();
+                });
             });
         });
 
